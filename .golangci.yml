@@ -1,0 +1,141 @@
+version: "2"
+
+run:
+  timeout: 10m
+  tests: true
+
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+    - golines
+
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(github.com/thespags)
+    goimports:
+      local-prefixes:
+        - github.com/thespags
+    golines:
+      max-len: 120 # trims lines automatically but some things like long strings don't.
+      reformat-tags: false # superseded by tagalign
+
+linters:
+  default: all
+
+  disable:
+    # intentionally disabled due to disagreement
+    - depguard    # explicitly declaring our tree of dependencies is low value
+    - exhaustruct # golang structs should have reasonable zero values
+    - ireturn     # it's okay to use abstractions
+    - nilnil      # we're fine returning nil for the caller to check a non failed no value.
+    - noinlineerr # inline errors are not a hill to die on
+    - mnd         # too many cases of obvious values that don't need noisy var declarations
+
+    # already covered by revive
+    - cyclop
+    - gocyclo
+    - forcetypeassert
+    - funlen
+    - gocognit
+    - lll
+
+    # replaced by wsl_v5
+    - wsl
+
+    # replaced by paralleltest
+    - tparallel
+
+    - err113
+
+    # Just forward tflint errors
+    - wrapcheck
+
+    - dupl
+    - exhaustive
+    - goconst
+    - godox
+    - musttag
+    - nestif
+    - testpackage
+
+  exclusions:
+    # Warn if an exclusion isn't used.
+    warn-unused: true
+
+    rules:
+      # Relax some lints for testing.
+      - path: "_test.go"
+        linters:
+          - unparam # test functions sometimes don't have multiple cases yet
+          - varnamelen # tests can use short names
+          - wrapcheck # tests don't need to wrap errors
+
+  settings:
+
+    gosec:
+      excludes:
+        - "G304"
+        - "G703"
+
+    revive:
+      enable-all-rules: true
+
+      rules:
+        - name: add-constant
+          disabled: true
+
+        # This conflicts with nonamedreturns, which aligns more with our style.
+        - name: confusing-results
+          disabled: true
+
+        - name: cognitive-complexity
+          disabled: true
+
+        - name: cyclomatic
+          disabled: true
+
+        # The exhaustive linter checks that we use all values, so requiring a default is redundant.
+        - name: enforce-switch-style
+          arguments: [allowNoDefault]
+
+        - name: flag-parameter
+          disabled: true
+
+        - name: function-length
+          arguments: [60, 0]
+
+        # Allow for long strings, others will be trimmed by golines.
+        - name: line-length-limit
+          arguments:
+            - 240
+
+        # Requiring comments for every package is going to drive developers crazy.
+        - name: package-comments
+          disabled: true
+
+        - name: unhandled-error
+          arguments:
+            - "strings.Builder.Write" # This never returns an error.
+            - "strings.Builder.WriteString" # This never returns an error.
+            - "^fmt.Fprint\\w*" # Most buffers we use don't error, and even if it did most people don't care to handle it...
+
+    varnamelen:
+      ignore-decls:
+        - i int                       # universal value for an int
+        - b byte
+        - n int
+        - sb strings.Builder          # common abbreviation for strings.Builder
+        - sb *strings.Builder
+
+      ignore-names:
+        - id
+        - fn
+        - ok
+        - to
+        - vm

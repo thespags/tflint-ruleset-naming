@@ -1,0 +1,9 @@
+[
+  {
+    "Message": "file \"case-000-wrong-module-filename.tf\" should be named \"my_group_my_project.tf\"",
+    "Range": {
+      "Start": { "Line": 1, "Column": 1 },
+      "End": { "Line": 1, "Column": 29 }
+    }
+  }
+]

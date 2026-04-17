@@ -1,0 +1,9 @@
+[
+  {
+    "Message": "data \"wrong_name\" should be named \"my_ami\" based on its attributes",
+    "Range": {
+      "Start": { "Line": 1, "Column": 16 },
+      "End": { "Line": 1, "Column": 28 }
+    }
+  }
+]

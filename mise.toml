@@ -1,0 +1,14 @@
+[tools]
+go = "1.26.1"
+golangci-lint = "2.11.4"
+
+[tasks.install]
+description = "Build and install the plugin to ~/.tflint.d/plugins"
+run = """
+go build
+mkdir -p ~/.tflint.d/plugins
+mv ./tflint-ruleset-naming ~/.tflint.d/plugins/tflint-ruleset-naming
+"""
+
+[settings]
+lockfile = true

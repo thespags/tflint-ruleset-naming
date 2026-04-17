@@ -1,0 +1,9 @@
+[
+  {
+    "Message": "module \"wrong_name\" should be named \"my_group_my_project\" based on its attributes",
+    "Range": {
+      "Start": { "Line": 1, "Column": 8 },
+      "End": { "Line": 1, "Column": 20 }
+    }
+  }
+]
