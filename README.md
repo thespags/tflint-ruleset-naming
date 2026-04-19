@@ -27,7 +27,7 @@ You can install the plugin with `tflint --init`. Declare a config in
 plugin "naming" {
   enabled = true
 
-  version = "0.0.1"
+  version = "0.0.2"
   source  = "github.com/thespags/tflint-ruleset-naming"
 }
 ```

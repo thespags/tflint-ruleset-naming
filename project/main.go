@@ -6,7 +6,7 @@ import "fmt"
 const Name string = "naming"
 
 // Version is the ruleset version.
-const Version string = "0.0.1"
+const Version string = "0.0.2"
 
 // ReferenceLink returns the rule reference link.
 func ReferenceLink(name string) string {
