@@ -3,6 +3,7 @@
 ![Go Version](https://img.shields.io/github/go-mod/go-version/thespags/tflint-ruleset-naming)
 ![License](https://img.shields.io/github/license/thespags/tflint-ruleset-naming)
 [![Go Report Card](https://goreportcard.com/badge/github.com/thespags/tflint-ruleset-naming)](https://goreportcard.com/report/github.com/thespags/tflint-ruleset-naming)
+[![codecov](https://codecov.io/gh/thespags/tflint-ruleset-sort/branch/main/graph/badge.svg)](https://codecov.io/gh/thespags/tflint-ruleset-sort)
 
 # TFLint Ruleset Naming
 
